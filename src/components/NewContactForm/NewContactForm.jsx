@@ -10,8 +10,8 @@ export class NewContactForm extends Component {
     onSubmit: PropTypes.func,
   };
 
-  nameInputId = nanoid();
-  phoneInputId = nanoid();
+  nameInputId = crypto.randomUUID();
+  phoneInputId = crypto.randomUUID();
 
   handleChange = ({ target: input }) => {
     const { name: inputName, value } = input;

@@ -3,7 +3,7 @@ import { FilterStyled } from './Filter.styled';
 import { nanoid } from 'nanoid';
 
 export class Filter extends Component {
-  filterInputId = nanoid();
+  filterInputId = crypto.randomUUID();
 
   handleChange = ({ target: input }) => {
     const { name: inputName, value } = input;
