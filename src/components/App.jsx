@@ -6,7 +6,6 @@ import { ListOfContacts } from './ListOfContacts/ListOfContacts';
 export class App extends Component {
 
   state = {
-    // contacts: [],
     contacts: [
       {id: 'id-1', name: 'Rosie Simpson', phone: '459-12-56'},
       {id: 'id-2', name: 'Hermione Kline', phone: '443-89-12'},
@@ -20,7 +19,10 @@ export class App extends Component {
 
   onSubmitForm = (id, value, phone) => {
     this.setState(prevState => {
-      return { contacts: [...prevState.contacts, { id: id, name: value, phone: phone }] };
+      return {
+        contacts: [...prevState.contacts, { id: id, name: value, phone: phone }],
+        name: '',
+        phone: '' };
     });
   };
 
@@ -28,9 +30,6 @@ export class App extends Component {
     this.setState({ [inputName]: value });
   };
 
-  reset = () => {
-    this.setState({ name: '', phone: '' });
-  };
 
   render() {
     return (
@@ -40,7 +39,7 @@ export class App extends Component {
           phone={this.state.phone}
           onSubmit={this.onSubmitForm}
           onChange={this.onInputChange}
-          reset={this.reset} />
+        />
         <ListOfContacts filter={this.state.filter} onChange={this.onInputChange} contacts={this.state.contacts} />
       </ContactsList>
     );

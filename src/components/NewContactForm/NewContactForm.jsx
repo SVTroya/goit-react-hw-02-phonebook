@@ -22,13 +22,11 @@ export class NewContactForm extends Component {
     ev.preventDefault();
     const { name, phone } = ev.currentTarget.elements;
     this.props.onSubmit(nanoid(), name.value, phone.value);
-    this.props.reset();
   };
 
   handleClick = ({ target: button }) => {
     button.blur();
   };
-
 
   render() {
     return (
