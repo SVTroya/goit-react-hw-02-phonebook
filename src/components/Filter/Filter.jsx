@@ -1,6 +1,5 @@
 import { Component } from 'react';
 import { FilterStyled } from './Filter.styled';
-import { nanoid } from 'nanoid';
 
 export class Filter extends Component {
   filterInputId = crypto.randomUUID();

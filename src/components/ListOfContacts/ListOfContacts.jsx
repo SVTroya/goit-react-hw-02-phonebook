@@ -7,6 +7,10 @@ import { Filter } from '../Filter/Filter';
 
 export class ListOfContacts extends Component {
 
+  state = {
+    filter: '',
+  };
+
   static propTypes = {
     contacts: PropTypes.arrayOf(
       PropTypes.shape({
@@ -25,13 +29,17 @@ export class ListOfContacts extends Component {
       ));
   }
 
+  onInputChange = (inputName, value) => {
+    this.setState({ [inputName]: value });
+  };
+
   render() {
     return (
       <ListWrapper>
         <HeaderContainer><h3>Contacts</h3>
-          <Filter filter={this.props.filter} onChange={this.props.onChange} /></HeaderContainer>
+          <Filter filter={this.state.filter} onChange={this.onInputChange} /></HeaderContainer>
         <ul>
-          {this.getContactsItems(this.props.contacts, this.props.filter)}
+          {this.getContactsItems(this.props.contacts, this.state.filter)}
         </ul>
       </ListWrapper>
     );

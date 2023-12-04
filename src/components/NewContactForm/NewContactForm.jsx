@@ -5,8 +5,12 @@ import PropTypes from 'prop-types';
 
 export class NewContactForm extends Component {
 
+  state = {
+    name: '',
+    phone: '',
+  };
+
   static propTypes = {
-    name: PropTypes.string,
     onSubmit: PropTypes.func,
   };
 
@@ -15,13 +19,14 @@ export class NewContactForm extends Component {
 
   handleChange = ({ target: input }) => {
     const { name: inputName, value } = input;
-    this.props.onChange(inputName, value);
+    this.setState({ [inputName]: value });
   };
 
   handleSubmit = (ev) => {
     ev.preventDefault();
     const { name, phone } = ev.currentTarget.elements;
     this.props.onSubmit(nanoid(), name.value, phone.value);
+    this.setState({name: '', phone: ''})
   };
 
   handleClick = ({ target: button }) => {
@@ -37,7 +42,7 @@ export class NewContactForm extends Component {
             type='text'
             name='name'
             id={this.nameInputId}
-            value={this.props.name}
+            value={this.state.name}
             placeholder='Enter name'
             onChange={this.handleChange}
             required />
@@ -46,7 +51,7 @@ export class NewContactForm extends Component {
             type='tel'
             name='phone'
             id={this.phoneInputId}
-            value={this.props.phone}
+            value={this.state.phone}
             placeholder='Enter phone number'
             onChange={this.handleChange}
             required />
