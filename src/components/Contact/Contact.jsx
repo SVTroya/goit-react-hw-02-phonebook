@@ -9,16 +9,18 @@ static propTypes = {
   contact: PropTypes.shape({
     id: PropTypes.string,
     name: PropTypes.string,
-  })
+  }),
+  onRemoveContact: PropTypes.func,
 }
 
   render() {
+  const {id, name, phone} = this.props.contact
     return (
       <>
-        <Name>{this.props.contact.name}</Name>
-        <Phone>tel.:{this.props.contact.phone}</Phone>
+        <Name>{name}</Name>
+        <Phone>tel.:{phone}</Phone>
         <IconWrapper>
-          <ImBin size={20}/>
+          <ImBin size={20} onClick={() => this.props.onRemoveContact(id)}/>
         </IconWrapper>
       </>
     )

@@ -16,15 +16,17 @@ export class ListOfContacts extends Component {
       PropTypes.shape({
         id: PropTypes.string,
         name: PropTypes.string,
+        phone: PropTypes.string,
       }),
     ),
+    onRemoveContact: PropTypes.func,
   };
 
   getContactsItems(contacts, filter) {
     return contacts.filter(contact => contact.name.toLowerCase().includes(filter.toLowerCase()))
       .map(contact => (
         <li key={contact.id}>
-          <Contact contact={contact} />
+          <Contact contact={contact} onRemoveContact={this.props.onRemoveContact}/>
         </li>
       ));
   }

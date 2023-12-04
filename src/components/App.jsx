@@ -20,13 +20,20 @@ export class App extends Component {
     });
   };
 
+  onRemoveContact = (id) => {
+    this.setState(prevState => ({ contacts: prevState.contacts.filter(contactInfo => contactInfo.id !== id) }));
+  };
+
   render() {
     return (
       <ContactsList>
         <NewContactForm
+          contacts={this.state.contacts}
           onSubmit={this.onSubmitForm}
         />
-        <ListOfContacts contacts={this.state.contacts} />
+        <ListOfContacts
+          contacts={this.state.contacts}
+          onRemoveContact={this.onRemoveContact}/>
       </ContactsList>
     );
   }

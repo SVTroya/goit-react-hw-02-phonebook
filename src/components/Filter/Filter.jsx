@@ -1,7 +1,14 @@
 import { Component } from 'react';
-import { FilterStyled } from './Filter.styled';
+import { FilterInputStyled } from './FilterInputStyled';
+import PropTypes from 'prop-types';
 
 export class Filter extends Component {
+
+  static propTypes = {
+    filter: PropTypes.string,
+    onChange: PropTypes.func,
+  }
+
   filterInputId = crypto.randomUUID();
 
   handleChange = ({ target: input }) => {
@@ -11,7 +18,7 @@ export class Filter extends Component {
 
   render() {
     return (
-      <FilterStyled
+      <FilterInputStyled
         type='text'
         name='filter'
         id={this.filterInputId}

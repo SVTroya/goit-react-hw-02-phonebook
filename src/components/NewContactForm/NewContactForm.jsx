@@ -11,6 +11,11 @@ export class NewContactForm extends Component {
   };
 
   static propTypes = {
+    contacts: PropTypes.arrayOf(PropTypes.shape({
+      id: PropTypes.string,
+      name: PropTypes.string,
+      phone: PropTypes.string,
+    })),
     onSubmit: PropTypes.func,
   };
 
@@ -25,8 +30,12 @@ export class NewContactForm extends Component {
   handleSubmit = (ev) => {
     ev.preventDefault();
     const { name, phone } = ev.currentTarget.elements;
+    if (this.props.contacts.some(({ name: contactName }) => contactName === name.value)) {
+      alert(`${name.value} is already in contacts!`);
+      return;
+    }
     this.props.onSubmit(nanoid(), name.value, phone.value);
-    this.setState({name: '', phone: ''})
+    this.setState({ name: '', phone: '' });
   };
 
   handleClick = ({ target: button }) => {

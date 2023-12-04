@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const FilterStyled = styled.input`
+export const FilterInputStyled = styled.input`
   display: inline;
   width: 100%;
   height: 30px;
